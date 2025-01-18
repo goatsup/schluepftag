@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>(っ ᵔ◡ᵔ)っ 🎁</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #333333;
+      margin: 0;
+      padding: 20px;
+      overflow-x: auto; /* Enable scrolling on the whole page */
+      color: #f2eded; /* Ensure text is visible on the dark background */
+      text-align: center; /* Default alignment for body content */
+    }
+    .text-container {
+      max-width: 800px; /* Set a fixed width for the text block */
+      margin: 0 auto; /* Center the container */
+      margin-left: 250px;
+    }
+    .clue {
+      text-align: left; /* Align this specific text to the left */
+      font-size: 1.2em; /* Slightly larger font for readability */
+      margin: 20px 0; /* Add vertical spacing */
+    }
+    .image-row {
+      display: flex;
+      justify-content: flex-start; /* Align images to the start of the row */
+      align-items: center;
+      gap: 10px; /* Space between images */
+      flex-wrap: nowrap; /* Prevent wrapping to the next line */
+    }
+    .image-row img {
+      width: 300px; /* Set a consistent width for all images */
+      height: auto; /* Maintain aspect ratio */
+      border: 2px solid #212121;
+      border-radius: 3px; /* Optional: rounded corners */
+      margin-bottom: 20px;
+    }
+    .header-image {
+      max-width: 25%; /* Ensure it scales with the viewport */
+      height: auto; /* Maintain aspect ratio */
+      margin-bottom: 1px; /* Add spacing below the image */
+    }
+    .title {
+      font-size: 1.5em; /* Make the title slightly larger */
+      font-weight: bold; /* Make it bold */
+      margin-bottom: 10px;
+    }
+    .input-container {
+      margin-top: 20px; /* Add spacing above the input field */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px; /* Space between the text box and button */
+    }
+    label {
+      font-size: 1.2em;
+      margin-right: 10px; /* Add space between the label and the text box */
+    }
+    input[type="text"] {
+      padding: 5px 10px;
+      font-size: 1em;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      width: 60px; /* Set a consistent width */
+    }
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #ff6f61; /* Highlight the text box when focused */
+    }
+    button {
+      padding: 5px 15px;
+      font-size: 1em;
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #e55b50;
+    }
+    #feedback {
+      margin-top: 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    .next-page {
+      margin-top: 20px; /* Add spacing above the next button */
+      display: none; /* Initially hide the next button */
+    }
+  </style>
+</head>
+<body>
+  <!-- Replace the header text with an image -->
+  <img src="clue2_pic/p2.jpg" alt="Winter Sky Header" class="header-image">
+  
+  <!-- Title -->
+  <h2 class="title">Our Favourite Grey</h2>
+
+  <!-- Centered text container -->
+  <div class="text-container">
+    <!-- Left-aligned clue inside the centered container -->
+    <p class="clue">
+      The sky has a way of keeping Mama and Papa home with us. We cherish this magic shade and have hidden it in a byte of our lives. Look closely—can you decode it?
+    </p>
+  </div>
+  
+  <!-- The row of 8 pictures -->
+  <div class="image-row">
+    <img src="clue2_pic/a.jpg" alt="Image A">
+    <img src="clue2_pic/b.jpg" alt="Image B">
+    <img src="clue2_pic/c.jpg" alt="Image C">
+    <img src="clue2_pic/d.jpg" alt="Image D">
+    <img src="clue2_pic/e.jpg" alt="Image E">
+    <img src="clue2_pic/f.jpg" alt="Image F">
+    <img src="clue2_pic/g.jpg" alt="Image G">
+    <img src="clue2_pic/h.jpg" alt="Image H">
+  </div>
+
+  <!-- Answer input field and submit button below the pictures -->
+  <div class="input-container">
+    <label for="antwort">Antwort:</label>
+    <input type="text" id="antwort" name="antwort" placeholder="">
+    <button id="submit">Submit</button>
+  </div>
+
+  <!-- Feedback message -->
+  <div id="feedback"></div>
+
+  <!-- Next page button -->
+  <div class="next-page">
+    <a href="scretmsg.html">
+      <button>Next</button>
+    </a>
+  </div>
+
+  <script>
+    // Add event listener to the submit button
+    document.getElementById('submit').addEventListener('click', function() {
+      const answer = document.getElementById('antwort').value.trim(); // Get user input and trim whitespace
+      const feedback = document.getElementById('feedback');
+      const nextPageButton = document.querySelector('.next-page');
+
+      if (answer === "180" || answer === "10110100") {
+        feedback.textContent = "Omedetou! Correct!";
+        feedback.style.color = "green"; // Change text color for correct answer
+        nextPageButton.style.display = "block"; // Show the next page button
+      } else {
+        feedback.textContent = "Womp womp! Try again.";
+        feedback.style.color = "red"; // Change text color for wrong answer
+        nextPageButton.style.display = "none"; // Hide the next page button
+      }
+    });
+  </script>
+</body>
+</html>

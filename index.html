@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>(っ ᵔ◡ᵔ)っ 🎁</title>
+  <style>
+    body {
+      background-color: #333333;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+    img {
+      max-width: 80%; /* Scale width to 80% of the screen */
+      max-height: 60vh; /* Scale height to fit within 60% of the viewport */
+      height: auto; /* Maintain the aspect ratio */
+      display: block;
+      margin: 0 auto 30px auto; /* Add space below the image */
+    }
+    #countdown-container {
+      font-size: 1.5em;
+      color: #aaa;
+      margin-top: 60px;
+      display: none; /* Hide by default */
+    }
+    #countdown {
+      font-size: 2em;
+      color: #aaa;
+      margin-top: 0; /* Adjust spacing above the countdown */
+    }
+    .button-container {
+      display: none; /* Initially hidden */
+      justify-content: center;
+      margin-top: 60px;
+      transform: translateX(-2%);
+    }
+    .button-container a {
+      text-decoration: none;
+      background-color: #ff6f61;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 1.2em;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .button-container a:hover {
+      background-color: #e55b50;
+    }
+  </style>
+</head>
+<body>
+  <!-- Replace the text with your centered image -->
+  <img src="welcom_pic/secret.jpeg" alt="Kinder haben ein Geheimnis" />
+
+  <!-- Countdown container -->
+  <div id="countdown-container">
+    <p>The puzzle unlocks in:</p>
+    <p id="countdown"></p>
+  </div>
+
+  <!-- Centered Button -->
+  <div class="button-container">
+    <a href="physpuz.html">Begin Puzzle</a>
+  </div>
+
+  <script>
+    // Set the target time (00:00 on 22 January)
+    const targetDate = new Date("2025-01-22T00:00:00");
+
+    // Function to handle display logic
+    function handleDisplay() {
+      const now = new Date();
+      const timeLeft = targetDate - now;
+
+      if (timeLeft <= 0) {
+        // If the hunt has started
+        document.getElementById("countdown-container").style.display = "none"; // Hide countdown
+        document.querySelector(".button-container").style.display = "flex"; // Show button
+      } else {
+        // If the hunt has not started
+        document.getElementById("countdown-container").style.display = "block"; // Show countdown
+        document.querySelector(".button-container").style.display = "none"; // Ensure button is hidden
+
+        // Update countdown every second
+        const countdownTimer = setInterval(() => {
+          const now = new Date();
+          const timeLeft = targetDate - now;
+
+          if (timeLeft <= 0) {
+            // Time reached: Hide countdown and show button
+            document.getElementById("countdown-container").style.display = "none";
+            document.querySelector(".button-container").style.display = "flex";
+            clearInterval(countdownTimer); // Stop the timer
+          } else {
+            // Calculate days, hours, minutes, seconds
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            // Display the countdown
+            document.getElementById("countdown").textContent = 
+              `${days}d ${hours}h ${minutes}m ${seconds}s`;
+          }
+        }, 1000);
+      }
+    }
+
+    // Run display logic on page load
+    handleDisplay();
+  </script>
+</body>
+</html>

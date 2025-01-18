@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(っ ᵔ◡ᵔ)っ 🎁</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333333;
+            color: #f2eded;
+            text-align: center;
+            margin: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+        img {
+            max-width: 60%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        .small-image {
+            max-width: 30%;
+            height: auto;
+        }
+        .smaller-image {
+            max-width: 25%;
+            height: auto;
+        }
+        .text-container {
+            max-width: 800px; /* Limit the width of the text */
+            margin: 20px auto; /* Center the container */
+            padding: 10px;
+            text-align: justify; /* Justify the text for better readability */
+            line-height: 1.6; /* Add spacing between lines */
+        }
+        .answer-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        .answer-section input {
+            padding: 5px; /* Reduced padding */
+            font-size: 14px; /* Adjusted font size */
+            border: 2px solid #666;
+            border-radius: 5px;
+            width: 150px; /* Set fixed width */
+            text-align: center; /* Center-align the text */
+        }
+        .red-button {
+            background-color: #ff4444;
+            color: white;
+            padding: 5px 10px; /* Smaller padding */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px; /* Reduced font size */
+            display: inline-block;
+        }
+        .red-button:hover {
+            background-color: #cc0000;
+        }
+        #next-section {
+            text-align: center; /* Center-align the button */
+            margin-top: 20px;
+        }
+        .title-spacing {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <img src="clue5_pic/p5.jpeg" alt="First Image" class="smaller-image">
+    <h1 class="title-spacing">While everyone else sleeps...</h1>
+
+    <div class="text-container">
+        <p>Koupen didn’t really nap—he had a sneaky plan instead. While Piyo and Miffy were sound asleep, he decided it was his chance to leave you something special. He says this picture holds a secret and suggests you take a closer look at its 'least significant' details. Can you uncover what he’s hiding?</p>
+    </div>
+    <img src="clue5_pic/encoded_image_grayscale.png" alt="First Image">
+
+    <div class="answer-section">
+        <p><strong>Was hat er gesagt? </strong></p>
+        <input type="text" id="answer" placeholder=" ">
+        <button class="red-button" onclick="checkAnswer()">Submit</button>
+    </div>
+
+    <div id="wakeup-message" class="hidden">
+        <p>Miffy and Piyo woke up. They don't suspect a thing!</p>
+    </div>
+    <div id="next-section" class="hidden">
+        <button class="red-button next-button" onclick="goToNextStep()">Next</button>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            const correctAnswer = "papa favourite is me"; // Replace with the correct answer
+            const userAnswer = document.getElementById("answer").value.trim();
+            const wakeupMessage = document.getElementById("wakeup-message");
+            const nextSection = document.getElementById("next-section");
+
+            if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                alert("ദ്ദി(˘◡˘)");
+                wakeupMessage.classList.remove("hidden"); // Show the wakeup message
+                nextSection.classList.remove("hidden"); // Show the "Next" button
+            } else {
+                alert("How can you be wrong?");
+            }
+        }
+
+        function goToNextStep() {
+            // Add logic for the next step if needed
+            window.location.href = "cakey.html"; 
+        }
+    </script>
+</body>
+</html>

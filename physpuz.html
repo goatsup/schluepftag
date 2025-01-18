@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(っ ᵔ◡ᵔ)っ 🎁</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333333;
+            color: #f2eded;
+            text-align: center;
+            margin: 20px;
+        }
+        .conversation-container {
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: left;
+        }
+        .speech-bubble {
+            background-color: #444;
+            color: #f2eded;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            font-size: 16px;
+            position: relative;
+        }
+        #title {
+            margin: 20px 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .answer-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+        .answer-section input {
+            padding: 5px;
+            font-size: 16px;
+            border: 2px solid #666;
+            border-radius: 5px;
+            width: 150px;
+            text-align: center;
+        }
+        .red-button {
+            background-color: #ff4444;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 10px;
+        }
+        .red-button:hover {
+            background-color: #cc0000;
+        }
+        #next-section {
+            text-align: center;
+            margin-top: 20px;
+            display: none; /* Initially hidden */
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #444;
+            color: #f2eded;
+            padding: 30px; /* Increased padding */
+            border-radius: 10px;
+            text-align: left; /* Align text to the left */
+            max-width: 500px;
+            margin: auto;
+        }
+        .close-button {
+            background-color: #ff4444;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+	    margin-top: 15px;
+        }
+        .close-button:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <div id="welcomeModal" class="modal">
+        <div class="modal-content">
+            <p>
+                Welcome to the ultimate puzzle hunt! This challenge is for Roman and Roman only! 
+                <br><br>
+                Pringle-crazy lady, stay out!
+                <br><br>
+                There are <strong>5 puzzles</strong> in total, including this one. Check your progress in the bar above as you go.
+                <br><br>
+                We are not evil. There is no time limit. If you need a break, just come back to the latest link to pick up where you left off.
+		<br><br>
+                Oh and one last thing, do not view goatsup's repo. It top secret.  
+            </p>
+        <div style="text-align: right;">
+            <button class="close-button" onclick="closeModal()">Wakarimashita</button>
+        </div>
+        </div>
+    </div>
+
+    <img src="clue1_pic/p1.jpg" alt="Progress Bar" style="width: 25%; margin-bottom: 5px;">
+
+    <div id="title">Let's loosen those limbs!</div>
+
+<img src="clue1_pic/kinder.jpg" alt="kids" style="width: 20%; margin-bottom: 5px;">
+
+    <div class="conversation-container">
+        <div class="speech-bubble">
+            Yōkoso, Roman! You are Roman, right? Whatever, doesn’t matter. This first puzzle should keep Mama out.
+        </div>
+        <div class="speech-bubble">
+            We noticed something interesting... unlike Mama, who loves her naps, Papa is always up and moving. So we decided to make the first challenge something active. 
+        </div>
+        <div class="speech-bubble">
+            We’ve hidden a clue in every room in the apartment. It’s your job to find them all and figure out the password. Now, get moving!
+        </div>
+    </div>
+
+    <div class="answer-section">
+        <label for="password"><strong>Enter the password:</strong></label>
+        <input type="text" id="password" placeholder=" ">
+        <button class="red-button" onclick="checkPassword()">Submit</button>
+    </div>
+
+    <div id="next-section">
+        <button class="red-button" onclick="goToNextStep()">Next</button>
+    </div>
+
+    <script>
+        // Show the modal when the page loads
+        window.onload = function () {
+            const modal = document.getElementById("welcomeModal");
+            modal.style.display = "flex"; // Show the modal
+        };
+
+        // Close the modal
+        function closeModal() {
+            const modal = document.getElementById("welcomeModal");
+            modal.style.display = "none"; // Hide the modal
+        }
+
+        function checkPassword() {
+            const correctPassword = "Wir lieben Lebensmittel"; // Replace with your actual password
+            const userPassword = document.getElementById("password").value.trim();
+            const nextSection = document.getElementById("next-section");
+
+            if (userPassword === correctPassword) {
+                alert("      Wir💛\nLebensmittel. \n         🅴");
+                nextSection.style.display = "block"; // Show the next button
+            } else {
+                alert("Huh? How can wrong?");
+            }
+        }
+
+        function goToNextStep() {
+            window.location.href = "sky.html"; // Replace with your next page
+        }
+    </script>
+</body>
+</html>

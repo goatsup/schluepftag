@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(っ ᵔ◡ᵔ)っ 🎁</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: #f2eded;
+            text-align: center;
+            margin: 20px;
+        }
+        .puzzle-container {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-gap: 5px;
+            justify-content: center;
+            margin: 20px auto;
+        }
+        .tile {
+            width: 100px;
+            height: 100px;
+            background-color: #444;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border: 2px solid #666;
+        }
+        .tile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .empty {
+            background-color: #333;
+            cursor: default;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .header-image {
+            max-width: 25%; /* Ensure it scales with the viewport */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 1px; /* Add spacing below the image */
+        }
+        .next-button {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .next-button:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <img src="clue4_pic/header.jpeg" alt="progress bar" class="header-image">
+    <h1>Tuck us in</h1>
+    <p>It’s naptime but we’re not in the right spots! Can you slide us into place?</p>
+    <div class="puzzle-container" id="puzzle"></div>
+    <div class="message" id="message"></div>
+    <button id="next-button" class="next-button" onclick="goToNextPage()">Next</button>
+    <script>
+        const puzzleContainer = document.getElementById("puzzle");
+        const message = document.getElementById("message");
+        const nextButton = document.getElementById("next-button");
+        const size = 3; // 3x3 grid
+        const tiles = [
+            "clue4_pic/tile_2_0.jpeg",
+            "clue4_pic/tile_1_1.jpeg",
+            "clue4_pic/tile_2_1.jpeg",
+            "clue4_pic/tile_0_2.jpeg",
+            "clue4_pic/tile_0_0.jpeg",
+            "clue4_pic/tile_1_0.jpeg",
+            "clue4_pic/tile_0_1.jpeg",
+            "clue4_pic/tile_1_2.jpeg",
+            "" // The empty tile
+        ];
+        let emptyIndex = tiles.length - 1;
+
+        // Initialize puzzle
+        function initPuzzle() {
+            puzzleContainer.innerHTML = "";
+            tiles.forEach((tile, index) => {
+                const tileElement = document.createElement("div");
+                tileElement.classList.add("tile");
+                if (tile === "") {
+                    tileElement.classList.add("empty");
+                    emptyIndex = index;
+                } else {
+                    const img = document.createElement("img");
+                    img.src = tile;
+                    tileElement.appendChild(img);
+                }
+                tileElement.dataset.index = index;
+                tileElement.addEventListener("click", () => moveTile(index));
+                puzzleContainer.appendChild(tileElement);
+            });
+        }
+
+        // Move tile if valid
+        function moveTile(index) {
+            const row = Math.floor(index / size);
+            const col = index % size;
+            const emptyRow = Math.floor(emptyIndex / size);
+            const emptyCol = emptyIndex % size;
+
+            // Check if the clicked tile is adjacent to the empty space
+            if (
+                (row === emptyRow && Math.abs(col - emptyCol) === 1) ||
+                (col === emptyCol && Math.abs(row - emptyRow) === 1)
+            ) {
+                // Swap tiles
+                [tiles[index], tiles[emptyIndex]] = [tiles[emptyIndex], tiles[index]];
+                emptyIndex = index;
+                updatePuzzle();
+                checkWin();
+            }
+        }
+
+        // Update puzzle display
+        function updatePuzzle() {
+            puzzleContainer.innerHTML = "";
+            tiles.forEach((tile, index) => {
+                const tileElement = document.createElement("div");
+                tileElement.classList.add("tile");
+                if (tile === "") {
+                    tileElement.classList.add("empty");
+                } else {
+                    const img = document.createElement("img");
+                    img.src = tile;
+                    tileElement.appendChild(img);
+                }
+                tileElement.dataset.index = index;
+                tileElement.addEventListener("click", () => moveTile(index));
+                puzzleContainer.appendChild(tileElement);
+            });
+        }
+
+        // Check if the puzzle is solved
+        function checkWin() {
+            const correctOrder = [
+                "clue4_pic/tile_0_0.jpeg",
+                "clue4_pic/tile_0_1.jpeg",
+                "clue4_pic/tile_0_2.jpeg",
+                "clue4_pic/tile_1_0.jpeg",
+                "clue4_pic/tile_1_1.jpeg",
+                "clue4_pic/tile_1_2.jpeg",
+                "clue4_pic/tile_2_0.jpeg",
+                "clue4_pic/tile_2_1.jpeg",
+                ""
+            ];
+            if (tiles.join() === correctOrder.join()) {
+                message.textContent = "Kinder fell asleep. ᶻ 𝗓 𝗓 𐰁 ᶻ 𝗓 𐰁𐰁...";
+                nextButton.style.display = "block"; // Show the Next button
+            } else {
+                message.textContent = "";
+            }
+        }
+
+        // Go to the next page
+        function goToNextPage() {
+            window.location.href = "bettrscretmsg.html"; // Replace with your next page's URL
+        }
+
+        // Initialize the game
+        initPuzzle();
+    </script>
+</body>
+</html>
